@@ -1,0 +1,231 @@
+= Asciidoc is awesome
+:Author: Nico Rikken
+:Date: 12-04-2016
+ 
+== Markup languages and me
+. HTML
+. Wiki
+. Org mode
+. Markdown
+. LaTeX
+. Asciidoc
+
+== What makes a good markup language?
+* Extensibility
+* Multiple output forms (article, book, presentation)
+* Convenient source-code
+** Easy to understand
+** Easy to edit
+
+*For the joy and effectiveness of the user*
+
+== Why use a markup language?
+* DRY principle: reuse your words and structure
+* Use your favorite editor
+* Use revision control
+* Integrate with other projects (pre and post processing)
+
+== My successful markup day in Org mode
+=== Scenario
+_Having limited time at an external customer for developing a project plan_
+
+=== Timeline
+. Discuss and take notes in Org mode
+. Restructure notes into a plan
+. Improve in discussion via an article view
+. Present to the board in presentation mode
+. Hand over the presentation and report
+
+=== Conclusion
+_One source, no repetition, little styling fuzz_
+
+== What is Asciidoc?
+
+_A publisher-grade markup language_
+
+[quote, O'reilly Media, Atlas documentation]
+AsciiDoc is a text document format for writing (among other things) books, ebooks, and documentation. It’s similar to wiki markup—if you can write a Wikipedia article, then you’ll have no problem with AsciiDoc. The main advantages of AsciiDoc are that it is easy to use and plays well with O’Reilly’s publishing tools, including Atlas.
+http://chimera.labs.oreilly.com/books/1230000000065/ch04.html[[source]
+
+=== Anatomy
+* Syntax like Markdown
+* Powerful features
+* Batteries included
+* Formal grammar
+
+=== Usage
+
+.Typical
+* Software documentation
+* Books
+
+.Anything else
+* Blog posts
+* Articles
+* Reports
+* Presentations
+* Notes
+
+=== Source code example
+
+[source, asciidoc]
+-----
+= Asciidoc is awesome
+:Author: Nico Rikken
+
+*bold* _italic_
+
+.List title
+* Unorderedlist
+.. Ordered list
+
+[source, shell]
+----
+echo "hello world"
+----
+
+.Image caption
+image::icon.png[]
+-----
+
+== Powerful features
+
+=== Rendering conditions
+Using attributes in the rendering to define the output
+
+[source, asciidoc]
+-----
+ifdef ::beta[]
+This text is only included in the beta-version of the documentation.
+endif ::beta[]
+-----
+
+_This can also be an easy way out for dealing with differences between output types_
+
+=== Internal referencing
+Naming elements in the source and referencing them
+
+=== Bibliography
+Bibliographic features out of the box
+
+[source, asciidoc]
+----
+[bibliography]
+.Optional list title
+- [[[taoup]]] Eric Steven Raymond. 'The Art of UNIX
+  Programming'. Addison-Wesley. ISBN 0-13-142901-9.
+----
+
+=== Built-in styles
+* Lists
+* Source code
+* Quotes
+* Tables
+* Admonition blocks
+* And more...
+
+[TIP]
+====
+Admonition blocks can be used for explicitly highlighting information, without interrupting the flow of the text. Also it allows for easier scanning by the reader. These blocks can often be found in books.
+====
+
+== Asciidoc in practice
+
+=== Toolchain
+[graphviz, asciidoc-pipeline, png]
+----
+digraph G {
+  "asciidoc source" -> "asciidoctor-diagram"
+  "asciidoctor-diagram" -> asciidoctor
+  templates -> asciidoctor
+  asciidoctor -> output
+  output -> pandoc
+  pandoc -> docx
+}
+----
+
+=== Because rendered images are awesome too
+
+[source, asciidoc]
+-----
+[graphviz, asciidoc-pipeline, png]
+----
+digraph G {
+  "asciidoc source" -> "asciidoctor-diagram"
+  "asciidoctor-diagram" -> asciidoctor
+  templates -> asciidoctor
+  asciidoctor -> output
+  output -> pandoc
+  pandoc -> docx
+}
+----
+-----
+
+=== Like PlantUML component diagrams
+
+.PlantUML component diagram
+[plantuml, plantuml-component-demo, png]
+----
+@startuml
+
+DataAccess - [First Component] 
+[First Component] ..> HTTP : use
+
+@enduml
+----
+
+=== Like PlantUML sequence diagrams
+
+.PlantUML sequence diagram
+[plantuml, plantuml-sequence-demo, png]
+----
+@startuml
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+@enduml
+----
+
+=== Like PlantUML Salt UI wire diagrams
+
+.Salt UI wire-diagrams
+[plantuml, plantuml-salt-demo, png]
+----
+@startuml
+salt
+{
+  Just plain text
+  [This is my button]
+  ()  Unchecked radio
+  (X) Checked radio
+  []  Unchecked box
+  [X] Checked box
+  "Enter text here   "
+  ^This is a droplist^
+}
+@enduml
+----
+
+== Tools
+
+=== Rendering
+* *Asciidoc*: reference implementation
+* *Asciidoctor*: community-driven renderer
+** *Asciidoctor-preview*: in webbrowser preview
+** *Asciidoctor-diagram*: diagram pre-rendering
+* *Pandoc*: multi-format conversion
+
+=== Templates and formats
+* *Asciidoctor-reveal.js*: Reveal.js presentations
+* *Hugo*: Static site generator with Asciidoc support
+
+=== Editing
+* *Most editors*: syntax highlighting
+* *Asciidoc FX*: Asciidoctor-based editor
+* *Atom editor*: Asciidoc preview
+* *GitHub*: support for Asciidoc (GitLab rendering is under way)
+
+== Now go use Asciidoc
+And rediscover the fun of writing
